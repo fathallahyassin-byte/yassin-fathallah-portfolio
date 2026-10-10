@@ -1,12 +1,18 @@
 "use client";
 
-import Image from "next/image";
 import { useRef } from "react";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { qualities, site, stats, timeline } from "@/lib/site";
 import RevealText from "./RevealText";
 import SectionLabel from "./SectionLabel";
 import Mark from "./Mark";
+
+const brief = [
+  { k: "Formation", v: site.formation },
+  { k: "Ville", v: `${site.city}, ${site.location}` },
+  { k: "Langues", v: site.languages.join(" · ") },
+  { k: "Objectif", v: "École d’ingénieur informatique" },
+];
 
 export default function About() {
   const root = useRef<HTMLElement>(null);
@@ -17,27 +23,14 @@ export default function About() {
       const mm = gsap.matchMedia();
 
       mm.add(MOTION_OK, () => {
-        // Portrait: clip reveal + slow parallax
-        gsap.fromTo(
-          q("[data-portrait]"),
-          { clipPath: "inset(100% 0 0 0)" },
-          {
-            clipPath: "inset(0% 0 0 0)",
-            duration: 1.6,
-            ease: "expo.inOut",
-            scrollTrigger: { trigger: q("[data-portrait]")[0], start: "top 80%", once: true },
-          },
-        );
-        gsap.fromTo(
-          q("[data-portrait-img]"),
-          { yPercent: -10, scale: 1.2 },
-          {
-            yPercent: 10,
-            scale: 1.05,
-            ease: "none",
-            scrollTrigger: { trigger: q("[data-portrait]")[0], start: "top bottom", end: "bottom top", scrub: true },
-          },
-        );
+        // « En bref » : les lignes apparaissent l’une après l’autre
+        gsap.from(q("[data-brief-row]"), {
+          opacity: 0,
+          y: 16,
+          duration: 1,
+          stagger: 0.06,
+          scrollTrigger: { trigger: q("[data-brief]")[0], start: "top 80%", once: true },
+        });
 
         // Stats: lines draw, numbers count up
         gsap.from(q("[data-stat-line]"), {
@@ -126,25 +119,30 @@ export default function About() {
         </h2>
 
         <div className="grid grid-cols-12 gap-x-6 gap-y-12">
-          <figure className="col-span-12 sm:col-span-8 md:col-span-5 lg:col-span-4">
-            <div data-portrait className="relative aspect-[4/5] overflow-hidden bg-ink-3">
-              <div data-portrait-img className="absolute inset-0">
-                <Image
-                  src="/images/portrait.webp"
-                  alt={`Portrait de ${site.name}`}
-                  fill
-                  sizes="(max-width: 768px) 70vw, 33vw"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <figcaption className="label mt-3 flex justify-between text-mute">
-              <span>Portrait — à remplacer</span>
-              <span>{site.city}, {site.location}</span>
-            </figcaption>
-          </figure>
+          <aside data-brief className="col-span-12 md:col-span-4 lg:col-span-4">
+            <h3 className="label mb-4 flex items-center gap-3 text-accent">
+              <Mark size={12} className="text-paper" /> En bref
+            </h3>
+            <dl className="border-t border-line">
+              {brief.map((b) => (
+                <div key={b.k} data-brief-row className="grid grid-cols-[7.5rem_1fr] gap-4 border-b border-line py-3">
+                  <dt className="label pt-0.5 text-mute">{b.k}</dt>
+                  <dd className="text-paper">{b.v}</dd>
+                </div>
+              ))}
+            </dl>
+            <h3 className="label mt-10 mb-3 text-accent">Qualités</h3>
+            <ul className="space-y-1.5 text-paper">
+              {qualities.map((q) => (
+                <li key={q} data-brief-row className="flex gap-3">
+                  <span aria-hidden="true" className="text-mute">→</span>
+                  {q}
+                </li>
+              ))}
+            </ul>
+          </aside>
 
-          <div className="col-span-12 md:col-span-7 md:col-start-6 lg:col-span-6 lg:col-start-7">
+          <div className="col-span-12 md:col-span-8 lg:col-span-7 lg:col-start-6">
             <RevealText as="p" className="lede mb-8 text-[clamp(1.4rem,1rem+1.6vw,2.4rem)] leading-[1.15] tracking-[-0.02em]">
               Je m’appelle {site.name}, étudiant en BTS SIO option SLAM à {site.city}, passionné par le{" "}
               <span className="serif text-accent">développement web</span> et les{" "}
@@ -159,31 +157,6 @@ export default function About() {
                 Après mon BTS, je souhaite poursuivre mes études en école d’ingénieur informatique pour
                 aller plus loin dans la conception d’applications.
               </RevealText>
-            </div>
-
-            <div className="mt-12 grid gap-8 border-t border-line pt-6 sm:grid-cols-2">
-              <div>
-                <h3 className="label mb-3 text-accent">Qualités personnelles</h3>
-                <ul className="space-y-1.5 text-paper">
-                  {qualities.map((q) => (
-                    <li key={q} className="flex gap-3">
-                      <span aria-hidden="true" className="text-mute">→</span>
-                      {q}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="label mb-3 text-accent">Langues</h3>
-                <ul className="space-y-1.5 text-paper">
-                  {site.languages.map((l) => (
-                    <li key={l} className="flex gap-3">
-                      <span aria-hidden="true" className="text-mute">→</span>
-                      {l}
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </div>
 
             <dl data-stats className="mt-16 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">

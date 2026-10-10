@@ -258,27 +258,6 @@ function halcyon(w, h, seed, zoom = 1) {
   return frame(w, h, "", paths, "#080808");
 }
 
-// ── Portrait placeholder — silhouette with a rim light ───────
-function portrait(w, h) {
-  const cx = w * 0.5;
-  const defs = `
-    <radialGradient id="bgp" cx="70%" cy="30%" r="80%"><stop offset="0" stop-color="#2b1a12"/><stop offset="0.6" stop-color="#0b0b0b"/><stop offset="1" stop-color="#050505"/></radialGradient>
-    <linearGradient id="skin" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#3d2a22"/><stop offset="0.5" stop-color="#151212"/><stop offset="1" stop-color="#090909"/></linearGradient>`;
-  const head = `M ${cx - w * 0.15} ${h * 0.36} C ${cx - w * 0.17} ${h * 0.2}, ${cx + w * 0.17} ${h * 0.2}, ${cx + w * 0.15} ${h * 0.36} C ${cx + w * 0.14} ${h * 0.46}, ${cx + w * 0.1} ${h * 0.52}, ${cx} ${h * 0.53} C ${cx - w * 0.1} ${h * 0.52}, ${cx - w * 0.14} ${h * 0.46}, ${cx - w * 0.15} ${h * 0.36} Z`;
-  const body = `M ${cx - w * 0.07} ${h * 0.5} L ${cx - w * 0.07} ${h * 0.6} C ${cx - w * 0.3} ${h * 0.63}, ${cx - w * 0.44} ${h * 0.7}, ${cx - w * 0.48} ${h} L ${cx + w * 0.48} ${h} C ${cx + w * 0.44} ${h * 0.7}, ${cx + w * 0.3} ${h * 0.63}, ${cx + w * 0.07} ${h * 0.6} L ${cx + w * 0.07} ${h * 0.5} Z`;
-  let scan = "";
-  for (let y = 0; y < h; y += 6) scan += `<rect y="${y}" width="${w}" height="1" fill="#000" fill-opacity="0.18"/>`;
-  return frame(
-    w, h, defs,
-    `<rect width="${w}" height="${h}" fill="url(#bgp)"/>
-     <circle cx="${w * 0.8}" cy="${h * 0.25}" r="${w * 0.25}" fill="${ACCENT}" fill-opacity="0.35" filter="url(#blur-xl)"/>
-     <path d="${body}" fill="url(#skin)"/><path d="${head}" fill="url(#skin)"/>
-     <path d="${head}" fill="none" stroke="${ACCENT}" stroke-width="${w / 120}" stroke-opacity="0.8" filter="url(#blur-m)" clip-path="inset(0 0 0 50%)"/>
-     <path d="${body}" fill="none" stroke="${ACCENT}" stroke-width="${w / 160}" stroke-opacity="0.5" filter="url(#blur-m)"/>
-     ${scan}`,
-  );
-}
-
 // File names match the project slugs in /lib/projects.ts.
 const projects = [
   ["nalovea", aether, 22],
@@ -302,4 +281,3 @@ for (const [name, fn, seed] of projects) {
   await render(fn(1600, 2000, seed + 1, 1.35), `${name}-detail-1`);
   await render(fn(2400, 1350, seed + 2, 0.7), `${name}-detail-2`);
 }
-await render(portrait(1200, 1500), "portrait");

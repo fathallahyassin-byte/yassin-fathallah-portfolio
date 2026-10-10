@@ -16,7 +16,6 @@ npm run build && npm start
 | Stats, qualités, parcours, compétences | `lib/site.ts` |
 | Stages & projets, missions, compétences E5 | `lib/projects.ts` |
 | Images | `public/images/{slug}.webp`, `{slug}-detail-1.webp` (4:5), `{slug}-detail-2.webp` (16:9) |
-| Portrait | `public/images/portrait.webp` (4:5) |
 
 Les visuels actuels sont générés par `node scripts/generate-visuals.mjs`. Pour mettre vos
 propres images, gardez simplement les mêmes noms de fichiers (WebP ~2400px de large) ;
@@ -45,7 +44,7 @@ components/
   Hero / HeroCanvas  nom géant + shader WebGL (sans Three.js)
   Intro / Marquee    manifeste mot-à-mot au scroll, bandeau sensible à la vélocité
   Work               ProjectSection (plein écran) + ProjectCard dans DragStrip
-  About / Skills     portrait, compteurs, timeline horizontale épinglée, compétences
+  About / Skills     « en bref », compteurs, timeline horizontale épinglée, compétences
   E5Synthesis        tableau de synthèse réalisations × compétences C1–C6
   Contact / Footer   CTA magnétique, copie de l’email, disponibilité
   RevealText / ParallaxImage / MagneticButton / SectionLabel / Clock / NextProject
