@@ -7,9 +7,9 @@ export const site = {
   lastName: "Fathallah", // deuxième ligne du hero
   initials: "YF",
   role: "Développeur web — BTS SIO SLAM",
-  roles: ["Développeur web", "BTS SIO — option SLAM", "Session 2026"],
+  roles: ["Développeur web", "BTS SIO — option SLAM", "Session 2027"],
   formation: "BTS SIO — option SLAM",
-  session: "Session 2026",
+  session: "Session 2027",
   location: "Rhône-Alpes",
   city: "Lyon",
   timezone: "Europe/Paris",
@@ -68,7 +68,12 @@ export const timeline = [
   {
     year: "2026",
     title: "Stage 2 — RPF Lyon",
-    text: "Fiches clients en base de données et page web « Espace client digital ». Épreuve E5, session 2026.",
+    text: "Fiches clients en base de données et page web « Espace client digital » pour une entreprise de rénovation lyonnaise.",
+  },
+  {
+    year: "2027",
+    title: "BTS SIO — session 2027",
+    text: "Deuxième année en cours, recherche d’un stage de 6 semaines à partir de janvier 2027, puis épreuve E5 et diplôme.",
   },
   {
     year: "Après",
