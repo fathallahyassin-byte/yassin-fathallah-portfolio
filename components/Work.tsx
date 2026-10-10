@@ -55,13 +55,13 @@ export default function Work() {
           <article className="flex w-[78vw] shrink-0 snap-start flex-col justify-between border border-line p-5 sm:w-[46vw] lg:w-[29vw]">
             <p className="label text-mute">{pad(projects.length + 1)} — La suite</p>
             <p className="display text-[clamp(2.4rem,4.4vw,4.6rem)]">
-              École d’<span className="serif text-accent">ingénieur</span>.
+              Licence pro en <span className="serif text-accent">alternance</span>.
             </p>
             <TransitionLink
               href="/#contact"
               className="label group flex items-center justify-between border-t border-line pt-3 text-paper"
             >
-              <span className="draw-line">Me contacter</span>
+              <span className="draw-line">Proposer une alternance</span>
               <span aria-hidden="true" className="transition-transform duration-700 group-hover:translate-x-1.5">
                 →
               </span>

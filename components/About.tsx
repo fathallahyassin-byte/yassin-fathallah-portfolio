@@ -11,7 +11,7 @@ const brief = [
   { k: "Formation", v: site.formation },
   { k: "Ville", v: `${site.city}, ${site.location}` },
   { k: "Langues", v: site.languages.join(" · ") },
-  { k: "Objectif", v: "École d’ingénieur informatique" },
+  { k: "Objectif", v: "Licence pro informatique en alternance (2027)" },
 ];
 
 export default function About() {
@@ -154,8 +154,8 @@ export default function About() {
                 gestion des systèmes d’information et en communication digitale.
               </RevealText>
               <RevealText as="p" delay={0.2}>
-                Après mon BTS, je souhaite poursuivre mes études en école d’ingénieur informatique pour
-                aller plus loin dans la conception d’applications.
+                Après mon BTS, je souhaite poursuivre en licence professionnelle informatique en
+                alternance, pour continuer à monter en compétences au sein d’une entreprise.
               </RevealText>
             </div>
 

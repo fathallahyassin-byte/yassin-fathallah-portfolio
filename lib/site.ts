@@ -16,7 +16,7 @@ export const site = {
   coordinates: "45.7640° N — 4.8357° E",
   description:
     "Étudiant en BTS SIO option SLAM, passionné par le développement web et les systèmes d’information.",
-  goal: "Poursuite d’études en école d’ingénieur informatique",
+  goal: "Licence pro informatique en alternance — rentrée 2027",
   languages: ["Français", "Anglais", "Espagnol"],
   email: "fathallah.yassin@outlook.fr",
   year: 2026,
@@ -77,8 +77,8 @@ export const timeline = [
   },
   {
     year: "Après",
-    title: "École d’ingénieur",
-    text: "Objectif : poursuivre mes études en école d’ingénieur informatique après le BTS.",
+    title: "Licence pro en alternance",
+    text: "Objectif : une licence professionnelle informatique en alternance dès la rentrée 2027, pour progresser au sein d’une entreprise.",
   },
 ] as const;
 

@@ -82,7 +82,7 @@ export default function Intro() {
         <p data-intro-fade className="col-span-12 max-w-[34ch] text-mute md:col-span-4">
           Deux stages, deux secteurs très différents : la cosmétique en ligne chez Nalovea, la
           rénovation du bâtiment chez RPF Lyon. Prochaine étape :{" "}
-          <span className="text-paper">l’école d’ingénieur informatique</span>.
+          <span className="text-paper">une licence pro informatique en alternance</span>, dès la rentrée 2027.
         </p>
       </div>
     </section>
